@@ -1,11 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const sequelize = require('./db/connection');
+const registroRoute = require('./routes/registroRoute');
 
 const app = express();
 
 app.use(express.json());
 
+app.use('/api/registro', registroRoute);
 
 app.get('/', (req, res) => {
     res.send('Hola desde el backend de Sigesti');
