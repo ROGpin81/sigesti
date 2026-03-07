@@ -51,4 +51,4 @@ const Usuarios = sequelize.define(
     },
 );
 
-module.exports = Users;
+module.exports = Usuarios;

@@ -7,8 +7,9 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api/registro', registroRoute);
+app.use('/registro', registroRoute);
 
+// API de prueba
 app.get('/', (req, res) => {
     res.send('Hola desde el backend de Sigesti');
 });

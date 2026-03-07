@@ -1,6 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const User = require("../models/Users");
+const Usuarios = require("../models/Users");
 
 const router = express.Router();
 
@@ -15,7 +15,17 @@ router.post("/", async (req, res) => {
       });
     }
 
+    /*
+    "email": "x",
+    "first_name": "x",
+    "last_name": "x",
+    "password": "x",
+    "role": "x"
+    */
+
+    // 
     const validRoles = ["ADMIN", "QA", "DEV"];
+
     if (!validRoles.includes(role)) {
       return res.status(400).json({
         status: 400,
@@ -25,7 +35,7 @@ router.post("/", async (req, res) => {
 
     const password_hash = await bcrypt.hash(password, 10);
 
-    const newUser = await User.create({
+    const newUser = await Usuarios.create({
       email,
       first_name,
       last_name,
