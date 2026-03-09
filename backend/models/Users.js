@@ -1,8 +1,7 @@
 const sequelize = require("../db/connection");
 const { DataTypes } = require("sequelize");
 
-const Usuarios = sequelize.define(
-    "users",
+const Users = sequelize.define("users", 
     {
         id: {
             type: DataTypes.INTEGER,
@@ -51,4 +50,4 @@ const Usuarios = sequelize.define(
     },
 );
 
-module.exports = Usuarios;
+module.exports = Users;
