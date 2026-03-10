@@ -1,7 +1,7 @@
-const sequelize = require('../bd/conexion');
+const sequelize = require('../db/conexion');
 const { DataTypes } = require('sequelize');
 
-const File = sequelize.define('files', {
+const Files = sequelize.define('files', {
 
     id: {
         type: DataTypes.INTEGER,
@@ -11,10 +11,12 @@ const File = sequelize.define('files', {
 
     original_filename: {
         type: DataTypes.STRING,
+        allowNull: false
     },
 
     storage_key: {
         type: DataTypes.STRING,
+        allowNull: false
     },
 
     mime_type: {
@@ -31,6 +33,7 @@ const File = sequelize.define('files', {
 
     uploaded_by_user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false
     },
 
     uploaded_at: {
@@ -42,4 +45,4 @@ const File = sequelize.define('files', {
     timestamps: false,
 });
 
-module.exports = File;
+module.exports = Files;

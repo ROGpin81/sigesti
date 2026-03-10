@@ -1,7 +1,7 @@
 const sequelize = require('../db/connection');
 const { DataTypes } = require('sequelize');
 
-const Ticket = sequelize.define('tickets', {
+const Tickets = sequelize.define('tickets', {
 
     id: {
         type: DataTypes.INTEGER,
@@ -11,14 +11,17 @@ const Ticket = sequelize.define('tickets', {
 
     title: {
         type: DataTypes.STRING,
+        allowNull: false
     },
 
     description: {
         type: DataTypes.TEXT,
+        allowNull: false
     },
 
     priority: {
         type: DataTypes.ENUM('ALTA', 'MEDIA', 'BAJA'),
+        allowNull: false
     },
 
     status: {
@@ -31,18 +34,22 @@ const Ticket = sequelize.define('tickets', {
             'POSPUESTO',
             'CANCELADO'
         ),
+        allowNull: false
     },
 
     created_by_user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false
     },
 
     qa_user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false
     },
 
     dev_user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false
     },
 
     created_at: {
@@ -74,4 +81,4 @@ const Ticket = sequelize.define('tickets', {
     timestamps: false,
 });
 
-module.exports = Ticket;
+module.exports = Tickets;

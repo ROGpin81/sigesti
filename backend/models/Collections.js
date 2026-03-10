@@ -1,4 +1,4 @@
-const sequelize = require('../bd/conexion');
+const sequelize = require('../db/conexion');
 const { DataTypes } = require('sequelize');
 
 const Collections = sequelize.define('collections', {
