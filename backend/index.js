@@ -17,6 +17,7 @@ app.get('/prueba', authMiddleware, (req, res) => {
     res.send('Hola desde el backend de Sigesti');
 });
 
+
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
