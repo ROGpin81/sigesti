@@ -1,6 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const Usuarios = require("../models/Users");
+const Users = require("../models/Users");
 
 const router = express.Router();
 
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
 
     const password_hash = await bcrypt.hash(password, 10);
 
-    const newUser = await Usuarios.create({
+    const newUser = await Users.create({
       email,
       first_name,
       last_name,
