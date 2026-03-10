@@ -1,7 +1,7 @@
-const sequelize = require('../bd/conexion');
+const sequelize = require('../db/conexion');
 const { DataTypes } = require('sequelize');
 
-const Movimientos = sequelize.define('ticket_status_history', {
+const Ticket_status_history = sequelize.define('ticket_status_history', {
 
     id: {
         type: DataTypes.INTEGER,
@@ -24,6 +24,7 @@ const Movimientos = sequelize.define('ticket_status_history', {
             'POSPUESTO',
             'CANCELADO'
         ),
+        allowNull: false
     },
 
     to_status: {
@@ -36,6 +37,7 @@ const Movimientos = sequelize.define('ticket_status_history', {
             'POSPUESTO',
             'CANCELADO'
         ),
+        allowNull: false
     },
 
     changed_by_user_id: {

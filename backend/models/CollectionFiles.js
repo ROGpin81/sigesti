@@ -1,4 +1,4 @@
-const sequelize = require('../bd/conexion');
+const sequelize = require('../db/conexion');
 const { DataTypes } = require('sequelize');
 
 const CollectionFiles = sequelize.define('collection_files', {
@@ -11,10 +11,12 @@ const CollectionFiles = sequelize.define('collection_files', {
 
     collection_id: {
         type: DataTypes.INTEGER,
+        allowNull: false
     },
 
     file_id: {
         type: DataTypes.INTEGER,
+        allowNull: false
     },
 
     qa_description: {
