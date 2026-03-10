@@ -10,16 +10,16 @@ const registro = async (req, res) => {
             return res.status(400).json({
                 status: 400,
                 message:
-                    "email, first_name, last_name, password y role son requeridos.",
+                    "Todos los campos son obligatorios",
             });
         }
 
-        const validRoles = ["ADMIN", "QA", "DEV"];
+        const validRoles = ["QA", "DEV"];
 
         if (!validRoles.includes(role)) {
             return res.status(400).json({
                 status: 400,
-                message: "role inválido. Valores permitidos: ADMIN, QA, DEV.",
+                message: "Rol inválido. Valores permitidos: QA ó DEV",
             });
         }
 
