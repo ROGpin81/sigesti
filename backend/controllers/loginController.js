@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Usuarios = require("../models/Users");
+const Users = require("../models/Users");
 require("dotenv").config();
 
 const login = async (req, res) => {
@@ -15,7 +15,7 @@ const login = async (req, res) => {
             });
         }
 
-        const user = await Usuarios.findOne({ where: { email } });
+        const user = await Users.findOne({ where: { email } });
 
         if (!user) {
             return res.status(401).json({
