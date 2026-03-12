@@ -3,7 +3,9 @@ const express = require('express');
 const sequelize = require('./db/connection');
 const registroRoute = require('./routes/registroRoute');
 const loginRoute = require('./routes/loginRoute');
+const authRoute = require("./routes/authRoute");
 const authMiddleware = require('./middlewares/auth').authMiddleware;
+
 
 const app = express();
 
@@ -11,6 +13,7 @@ app.use(express.json());
 
 app.use('/registro', registroRoute);
 app.use('/login', loginRoute);
+app.use('/auth', authRoute);
 
 // API privada de prueba
 app.get('/prueba', authMiddleware, (req, res) => {
