@@ -1,0 +1,6 @@
+{
+  "/(general)/dashboard/page": "app/(general)/dashboard/page.js",
+  "/(general)/login/page": "app/(general)/login/page.js",
+  "/(general)/registro/page": "app/(general)/registro/page.js",
+  "/page": "app/page.js"
+}

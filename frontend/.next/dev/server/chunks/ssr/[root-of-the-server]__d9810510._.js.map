@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/kiria/OneDrive/Desktop/TUDAW/Desarrollo%20Apps%20Web%20II/sigesti/frontend/src/app/%28general%29/dashboard/page.tsx"],"sourcesContent":["export default function page() {\r\n    return <h1>Bienvenido al dashboard de Sigesti</h1>;\r\n}"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACpB,qBAAO,0PAAC;kBAAG;;;;;;AACf"}}]
+}

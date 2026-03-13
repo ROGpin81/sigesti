@@ -1,0 +1,4 @@
+[00:00:02.943] Server  LOG     ✓ Ready in 2.2s
+[00:03:54.959] Server  LOG     ✓ Compiled in 37ms
+[00:18:42.443] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./frontend/src/contexts/ContextAuth.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:18:42.769] Server  LOG     ✓ Compiled in 46ms
