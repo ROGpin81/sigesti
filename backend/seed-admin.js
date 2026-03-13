@@ -15,7 +15,14 @@ const seedAdmin = async () => {
         });
 
         if (adminExistente) {
+            const password_hash = await bcrypt.hash('Admin12345', 10);
+
+            await adminExistente.update({
+                password_hash
+            });
             console.log('El usuario administrador ya existe');
+            console.log('La contraseña fue actualizada correctamente');
+            
             process.exit();
         }
 
