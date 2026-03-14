@@ -5,6 +5,7 @@ const registroRoute = require("./routes/registroRoute");
 const loginRoute = require("./routes/loginRoute");
 const usersRoute = require("./routes/usersRoute");
 const authRoute = require("./routes/authRoute");
+const ticketsRoute = require("./routes/ticketsRoute");
 const cors = require("cors");
 const authMiddleware = require("./middlewares/auth").authMiddleware;
 
@@ -24,6 +25,7 @@ app.use(
 app.use("/registro", registroRoute);
 app.use("/login", loginRoute);
 app.use("/auth", authRoute);
+app.use("/api", ticketsRoute);
 
 // API privada de prueba
 app.get("/prueba", authMiddleware, (req, res) => {
