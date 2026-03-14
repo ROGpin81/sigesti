@@ -25,7 +25,6 @@ app.use(
 app.use("/registro", registroRoute);
 app.use("/login", loginRoute);
 app.use("/auth", authRoute);
-app.use("/api", ticketsRoute);
 
 // API privada de prueba
 app.get("/prueba", authMiddleware, (req, res) => {
@@ -34,6 +33,7 @@ app.get("/prueba", authMiddleware, (req, res) => {
 
 // APIs privadas
 app.use("/users", authMiddleware, usersRoute);
+app.use("/tickets", authMiddleware, ticketsRoute);
 
 const PORT = process.env.PORT;
 
