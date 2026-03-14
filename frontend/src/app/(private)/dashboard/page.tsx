@@ -1,3 +1,8 @@
-export default function page() {
-    return <h1>Bienvenido al dashboard de Sigesti</h1>;
+export default function DashboardPage() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <p>Bienvenido al sistema SIGESTI.</p>
+    </div>
+  );
 }
