@@ -1,4 +1,5 @@
 const Tickets = require("../models/Tickets");
+const Users = require("../models/Users");
 
 const crearTicket = async (req, res) => {
 
@@ -16,6 +17,42 @@ const crearTicket = async (req, res) => {
         if (!title || !description || !priority || !qa_user_id || !dev_user_id || !created_by_user_id) {
             return res.status(400).json({
                 mensaje: "Todos los campos son obligatorios"
+            });
+        }
+
+        const [qaUser, devUser, createdByUser] = await Promise.all([
+            Users.findByPk(qa_user_id),
+            Users.findByPk(dev_user_id),
+            Users.findByPk(created_by_user_id)
+        ]);
+
+        if (!qaUser) {
+            return res.status(400).json({
+                mensaje: "qa_user_id no existe"
+            });
+        }
+
+        if (qaUser.role !== "QA") {
+            return res.status(400).json({
+                mensaje: "qa_user_id debe pertenecer a un usuario con rol QA"
+            });
+        }
+
+        if (!devUser) {
+            return res.status(400).json({
+                mensaje: "dev_user_id no existe"
+            });
+        }
+
+        if (devUser.role !== "DEV") {
+            return res.status(400).json({
+                mensaje: "dev_user_id debe pertenecer a un usuario con rol DEV"
+            });
+        }
+
+        if (!createdByUser) {
+            return res.status(400).json({
+                mensaje: "created_by_user_id no existe"
             });
         }
 

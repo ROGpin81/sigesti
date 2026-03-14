@@ -3,12 +3,12 @@ const router = express.Router();
 
 const ticketsController = require("../controllers/ticketsController");
 
-router.post("/tickets", ticketsController.crearTicket);
+router.post("/", ticketsController.crearTicket);
 
-router.get("/tickets", ticketsController.obtenerTickets);
+router.get("/", ticketsController.obtenerTickets);
 
-router.get("/tickets/:id", ticketsController.obtenerTicketPorId);
+router.get("/:id", ticketsController.obtenerTicketPorId);
 
-router.put("/tickets/:id", ticketsController.actualizarTicket);
+router.put("/:id", ticketsController.actualizarTicket);
 
 module.exports = router;
