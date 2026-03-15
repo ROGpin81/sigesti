@@ -6,6 +6,8 @@ const loginRoute = require("./routes/loginRoute");
 const usersRoute = require("./routes/usersRoute");
 const authRoute = require("./routes/authRoute");
 const ticketsRoute = require("./routes/ticketsRoute");
+const collectionsRoute = require("./routes/collectionsRoute");
+
 const cors = require("cors");
 const authMiddleware = require("./middlewares/auth").authMiddleware;
 
@@ -34,6 +36,7 @@ app.get("/prueba", authMiddleware, (req, res) => {
 // APIs privadas
 app.use("/users", authMiddleware, usersRoute);
 app.use("/tickets", authMiddleware, ticketsRoute);
+app.use("/collections", authMiddleware, collectionsRoute);
 
 const PORT = process.env.PORT;
 
