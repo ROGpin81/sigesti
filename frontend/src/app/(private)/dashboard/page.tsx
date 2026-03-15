@@ -20,7 +20,7 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-3">
         <Link
           href="/perfil"
-          className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+          className="min-h-37.5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
         >
           <h2 className="text-xl font-semibold">Mi perfil</h2>
           <p className="mt-2 text-sm text-slate-600">
@@ -30,18 +30,28 @@ export default function DashboardPage() {
 
         <Link
           href="/tickets"
-          className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+          className="min-h-37.5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
         >
-          <h2 className="text-xl font-semibold">Tickets</h2>
+          <h2 className="text-xl font-semibold">Ver tickets</h2>
           <p className="mt-2 text-sm text-slate-600">
-            Ver y administrar tickets del sistema.
+            Consultar el listado principal de tickets.
+          </p>
+        </Link>
+
+        <Link
+          href="/tickets/nuevo"
+          className="min-h-37.5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+        >
+          <h2 className="text-xl font-semibold">Crear ticket</h2>
+          <p className="mt-2 text-sm text-slate-600">
+            Registrar un nuevo ticket en el sistema.
           </p>
         </Link>
 
         {user?.role === "ADMIN" && (
           <Link
             href="/usuarios"
-            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+            className="min-h-37.5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
           >
             <h2 className="text-xl font-semibold">Usuarios</h2>
             <p className="mt-2 text-sm text-slate-600">
