@@ -1,9 +1,22 @@
 import { createContext } from "react";
 import { AuthUsuario } from "@/models/AuthUsuario";
 
-export const ContextAuth = createContext({
+export interface ContextAuthType {
+  token: string;
+  user: AuthUsuario | null;
+  loading: boolean;
+  isAuthenticated: boolean;
+  guardarSesion: (token: string, user: AuthUsuario) => void;
+  actualizarUsuario: (user: AuthUsuario) => void;
+  cerrarSesion: () => void;
+}
+
+export const ContextAuth = createContext<ContextAuthType>({
     token: "",
-    user: {} as AuthUsuario,
-    guardarSesion: (token: string, user: AuthUsuario) => {},
+    user: null,
+    loading: true,
+    isAuthenticated: false,
+    guardarSesion: () => {},
+    actualizarUsuario: () => {},
     cerrarSesion: () => {},
 });

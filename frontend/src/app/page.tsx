@@ -1,9 +1,23 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useContextAuth } from "@/providers/ProviderAuth";
 
-export default function page() {
+export default function HomePage() {
     const router = useRouter();
+
+    const { loading, isAuthenticated } = useContextAuth();
+
+    useEffect(() => {
+        if (loading) return;
+
+        if (isAuthenticated) {
+        router.replace("/dashboard");
+        } else {
+        router.replace("/login");
+        }
+    }, [loading, isAuthenticated, router]);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-slate-100 text-indigo-950">

@@ -1,18 +1,25 @@
 import axios from "axios";
-import { RegistroUsuario } from "@/models/RegistroUsuario";
-import { LoginUsuario } from "@/models/LoginUsuario";
 
 const API_URL = "http://localhost:5050";
 
-export const registroApi = async (body: RegistroUsuario) => {
-    const response = await axios.post(`${API_URL}/registro`, body);
-    return response.data;
-};
+export const api = axios.create({
+  baseURL: API_URL,
+});
 
-export const loginApi = async (body: LoginUsuario) => {
-    const response = await axios.post(`${API_URL}/login`, body);
-    return response.data;
-};
+api.interceptors.request.use(
+  (config) => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("sigesti_token");
+
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 export const getErrorApi = (error: any) => {
     if (error?.response?.data?.message) return error.response.data.message;
