@@ -280,7 +280,7 @@ const resetearPasswordUsuario = async (req, res) => {
 
         return res.status(200).json({
             status: 200,
-            message: "Contraseña actualizada exitosamente.",
+            message: "Contraseña reseteada exitosamente.",
             data: {
                 id: user.id,
                 updated_at: user.updated_at,
