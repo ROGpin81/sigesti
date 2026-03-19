@@ -21,6 +21,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getErrorApi = (error: any) => {
     if (error?.response?.data?.message) return error.response.data.message;
     return "Ocurrio un error.";
