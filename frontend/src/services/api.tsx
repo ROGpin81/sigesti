@@ -21,7 +21,8 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-export const getErrorApi = (error: any) => {
-    if (error?.response?.data?.message) return error.response.data.message;
+export const getErrorApi = (error: unknown) => {
+  if (error?.response?.data?.message) return error.response.data.message;
+  if (error?.response?.data?.mensaje) return error.response.data.mensaje;
     return "Ocurrio un error.";
 };

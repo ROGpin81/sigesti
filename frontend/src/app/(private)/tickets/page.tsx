@@ -22,7 +22,7 @@ export default function TicketsPage() {
 
       const data = await getTicketsApi();
       setTickets(data.tickets || []);
-    } catch (error: any) {
+    } catch (error: unknown) {
       setMensaje(getErrorApi(error));
     } finally {
       setLoading(false);
@@ -101,6 +101,34 @@ export default function TicketsPage() {
                         className="rounded-md bg-blue-200 px-3 py-1"
                       >
                         Editar
+                      </Link>
+
+                      <Link
+                        href={`/tickets/${ticket.id}/estado`}
+                        className="rounded-md bg-indigo-200 px-3 py-1"
+                      >
+                        Estado
+                      </Link>
+
+                      <Link
+                        href={`/tickets/${ticket.id}/acciones`}
+                        className="rounded-md bg-amber-200 px-3 py-1"
+                      >
+                        Acciones
+                      </Link>
+
+                      <Link
+                        href={`/tickets/${ticket.id}/historial`}
+                        className="rounded-md bg-slate-200 px-3 py-1"
+                      >
+                        Historial
+                      </Link>
+
+                      <Link
+                        href={`/tickets/${ticket.id}/colecciones`}
+                        className="rounded-md bg-emerald-200 px-3 py-1"
+                      >
+                        Colecciones
                       </Link>
                     </div>
                   </td>
