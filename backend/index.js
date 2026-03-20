@@ -8,6 +8,7 @@ const usersRoute = require("./routes/usersRoute");
 const authRoute = require("./routes/authRoute");
 const ticketsRoute = require("./routes/ticketsRoute");
 const collectionsRoute = require("./routes/collectionsRoute");
+const dashboardRoute = require("./routes/dashboardRoute");
 const filesRoutes = require("./routes/files.routes");
 
 const cors = require("cors");
@@ -34,6 +35,7 @@ app.use(
 app.use("/registro", registroRoute);
 app.use("/login", loginRoute);
 app.use("/auth", authRoute);
+app.use("/dashboard", dashboardRoute);
 
 // API privada de prueba
 app.get("/prueba", authMiddleware, (req, res) => {
