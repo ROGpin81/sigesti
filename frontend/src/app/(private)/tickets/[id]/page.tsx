@@ -41,7 +41,7 @@ export default function TicketDetallePage() {
         : usersData.data || usersData.users || [];
 
       setUsuarios(listaUsuarios);
-    } catch (error: any) {
+    } catch (error: unknown) {
       setMensaje(getErrorApi(error));
     } finally {
       setLoading(false);
@@ -67,12 +67,42 @@ export default function TicketDetallePage() {
         </div>
 
         {ticket && (
-          <Link
-            href={`/tickets/${ticket.id}/editar`}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500"
-          >
-            Editar
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href={`/tickets/${ticket.id}/editar`}
+              className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500"
+            >
+              Editar
+            </Link>
+
+            <Link
+              href={`/tickets/${ticket.id}/estado`}
+              className="rounded-lg bg-indigo-900 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-800"
+            >
+              Estado
+            </Link>
+
+            <Link
+              href={`/tickets/${ticket.id}/acciones`}
+              className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-500"
+            >
+              Acciones
+            </Link>
+
+            <Link
+              href={`/tickets/${ticket.id}/historial`}
+              className="rounded-lg bg-slate-700 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-600"
+            >
+              Historial
+            </Link>
+
+            <Link
+              href={`/tickets/${ticket.id}/colecciones`}
+              className="rounded-lg bg-emerald-700 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600"
+            >
+              Colecciones
+            </Link>
+          </div>
         )}
       </div>
 

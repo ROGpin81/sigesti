@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5050";
+export const API_URL = "http://localhost:5050";
 
 export const api = axios.create({
   baseURL: API_URL,
@@ -21,8 +21,11 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getErrorApi = (error: any) => {
-    if (error?.response?.data?.message) return error.response.data.message;
-    return "Ocurrio un error.";
+export const getErrorApi = (error: unknown) => {
+  const err = error as any;
+
+  if (err?.response?.data?.message) return err.response.data.message;
+  if (err?.response?.data?.mensaje) return err.response.data.mensaje;
+
+  return "Ocurrio un error.";
 };

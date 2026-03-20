@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const sequelize = require("./db/connection");
 const registroRoute = require("./routes/registroRoute");
 const loginRoute = require("./routes/loginRoute");
@@ -8,20 +9,26 @@ const authRoute = require("./routes/authRoute");
 const ticketsRoute = require("./routes/ticketsRoute");
 const collectionsRoute = require("./routes/collectionsRoute");
 const dashboardRoute = require("./routes/dashboardRoute");
+const filesRoutes = require("./routes/files.routes");
 
 const cors = require("cors");
 const authMiddleware = require("./middlewares/auth").authMiddleware;
 
 const app = express();
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.use(
-    cors({
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        credentials: false,
-    }),
+  "/uploads",
+  express.static(path.join(__dirname, "src/uploads"))
 );
 
 // APIs públicas
@@ -39,6 +46,7 @@ app.get("/prueba", authMiddleware, (req, res) => {
 app.use("/users", authMiddleware, usersRoute);
 app.use("/tickets", authMiddleware, ticketsRoute);
 app.use("/collections", authMiddleware, collectionsRoute);
+app.use("/api", filesRoutes);
 
 const PORT = process.env.PORT;
 
