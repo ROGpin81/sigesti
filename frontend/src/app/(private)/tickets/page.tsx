@@ -53,23 +53,23 @@ export default function TicketsPage() {
         </p>
       )}
 
-      <section className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <section className="rounded-2xl border border-slate-200 bg-white shadow-sm">
         {loading ? (
           <div className="p-6">
             <p className="text-sm text-slate-600">Cargando tickets...</p>
           </div>
         ) : (
-          <table className="min-w-full text-sm">
+          <table className="w-full table-fixed text-sm">
             <thead className="bg-slate-50 text-left">
               <tr>
-                <th className="px-4 py-3">ID</th>
-                <th className="px-4 py-3">Título</th>
-                <th className="px-4 py-3">Prioridad</th>
-                <th className="px-4 py-3">Estado</th>
-                <th className="px-4 py-3">QA</th>
-                <th className="px-4 py-3">DEV</th>
-                <th className="px-4 py-3">Creado</th>
-                <th className="px-4 py-3">Acciones</th>
+                <th className="w-12 px-4 py-3">ID</th>
+                <th className="w-[32%] px-4 py-3">Título</th>
+                <th className="w-24 px-4 py-3">Prioridad</th>
+                <th className="w-28 px-4 py-3">Estado</th>
+                <th className="w-14 px-4 py-3">QA</th>
+                <th className="w-14 px-4 py-3">DEV</th>
+                <th className="w-44 px-4 py-3">Creado</th>
+                <th className="w-32 px-4 py-3">Acciones</th>
               </tr>
             </thead>
 
@@ -77,60 +77,76 @@ export default function TicketsPage() {
               {tickets.map((ticket) => (
                 <tr key={ticket.id} className="border-t border-slate-200">
                   <td className="px-4 py-3">{ticket.id}</td>
-                  <td className="px-4 py-3">{ticket.title}</td>
+                  <td className="px-4 py-3 whitespace-normal wrap-break-word">{ticket.title}</td>
                   <td className="px-4 py-3">{ticket.priority}</td>
                   <td className="px-4 py-3">{ticket.status}</td>
                   <td className="px-4 py-3">{ticket.qa_user_id}</td>
                   <td className="px-4 py-3">{ticket.dev_user_id}</td>
-                  <td className="px-4 py-3">
+                  <td className="px-4 py-3 whitespace-normal wrap-break-word">
                     {ticket.created_at
                       ? new Date(ticket.created_at).toLocaleString()
                       : "-"}
                   </td>
-                  <td className="px-4 py-3">
-                    <div className="flex flex-wrap gap-2">
-                      <Link
-                        href={`/tickets/${ticket.id}`}
-                        className="rounded-md bg-slate-200 px-3 py-1"
-                      >
-                        Ver
-                      </Link>
+                  <td className="relative px-4 py-3">
+                    <details className="group relative inline-block">
+                      <summary className="flex w-24 cursor-pointer list-none items-center justify-between gap-2 whitespace-nowrap rounded-lg border border-slate-300 bg-slate-100 px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700 [&::-webkit-details-marker]:hidden">
+                        <span>Acciones</span>
+                        <svg
+                          className="h-4 w-4 transition group-open:rotate-180"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M5 8L10 13L15 8"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </summary>
 
-                      <Link
-                        href={`/tickets/${ticket.id}/editar`}
-                        className="rounded-md bg-blue-200 px-3 py-1"
-                      >
-                        Editar
-                      </Link>
-
-                      <Link
-                        href={`/tickets/${ticket.id}/estado`}
-                        className="rounded-md bg-indigo-200 px-3 py-1"
-                      >
-                        Estado
-                      </Link>
-
-                      <Link
-                        href={`/tickets/${ticket.id}/acciones`}
-                        className="rounded-md bg-amber-200 px-3 py-1"
-                      >
-                        Acciones
-                      </Link>
-
-                      <Link
-                        href={`/tickets/${ticket.id}/historial`}
-                        className="rounded-md bg-slate-200 px-3 py-1"
-                      >
-                        Historial
-                      </Link>
-
-                      <Link
-                        href={`/tickets/${ticket.id}/colecciones`}
-                        className="rounded-md bg-emerald-200 px-3 py-1"
-                      >
-                        Colecciones
-                      </Link>
-                    </div>
+                      <div className="absolute right-0 z-30 mt-2 w-40 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg">
+                        <Link
+                          href={`/tickets/${ticket.id}`}
+                          className="block border-b border-slate-100 px-2.5 py-1.5 text-xs text-slate-700 transition hover:bg-slate-50"
+                        >
+                          Ver ticket
+                        </Link>
+                        <Link
+                          href={`/tickets/${ticket.id}/editar`}
+                          className="block border-b border-slate-100 px-2.5 py-1.5 text-xs text-slate-700 transition hover:bg-blue-50"
+                        >
+                          Editar
+                        </Link>
+                        <Link
+                          href={`/tickets/${ticket.id}/estado`}
+                          className="block border-b border-slate-100 px-2.5 py-1.5 text-xs text-slate-700 transition hover:bg-indigo-50"
+                        >
+                          Cambiar estado
+                        </Link>
+                        <Link
+                          href={`/tickets/${ticket.id}/acciones`}
+                          className="block border-b border-slate-100 px-2.5 py-1.5 text-xs text-slate-700 transition hover:bg-amber-50"
+                        >
+                          Registrar accion
+                        </Link>
+                        <Link
+                          href={`/tickets/${ticket.id}/historial`}
+                          className="block border-b border-slate-100 px-2.5 py-1.5 text-xs text-slate-700 transition hover:bg-slate-50"
+                        >
+                          Ver historial
+                        </Link>
+                        <Link
+                          href={`/tickets/${ticket.id}/colecciones`}
+                          className="block px-2.5 py-1.5 text-xs text-slate-700 transition hover:bg-emerald-50"
+                        >
+                          Ver colecciones
+                        </Link>
+                      </div>
+                    </details>
                   </td>
                 </tr>
               ))}
