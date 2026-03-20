@@ -12,7 +12,7 @@ const {
 
 const router = express.Router();
 
-const adminOnly = (req, res, next) => {
+/*const adminOnly = (req, res, next) => {
     if (!req.user || req.user.role !== "ADMIN") {
         return res.status(403).json({
             status: 403,
@@ -23,7 +23,7 @@ const adminOnly = (req, res, next) => {
     next();
 };
 
-router.use(adminOnly);
+router.use(adminOnly);*/
 
 router.get("/", obtenerUsuarios);
 router.get("/:id", obtenerUsuarioPorId);
