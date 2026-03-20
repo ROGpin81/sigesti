@@ -21,6 +21,43 @@ const createHistoryComment = (base, extra) => {
     return `${base}. ${extra.trim()}`;
 };
 
+const formatUserFullName = (user) => {
+    if (!user) {
+        return null;
+    }
+
+    return `${user.first_name} ${user.last_name}`.trim();
+};
+
+const attachTicketUserNames = async (tickets) => {
+    if (!tickets || tickets.length === 0) {
+        return [];
+    }
+
+    const userIds = [...new Set(
+        tickets.flatMap((ticket) => [ticket.qa_user_id, ticket.dev_user_id]),
+    )];
+
+    const users = await Users.findAll({
+        where: { id: userIds },
+        attributes: ["id", "first_name", "last_name"],
+    });
+
+    const usersById = new Map(users.map((user) => [user.id, user]));
+
+    return tickets.map((ticket) => {
+        const ticketJson = ticket.toJSON();
+        const qaUser = usersById.get(ticket.qa_user_id);
+        const devUser = usersById.get(ticket.dev_user_id);
+
+        return {
+            ...ticketJson,
+            qa_user_name: formatUserFullName(qaUser),
+            dev_user_name: formatUserFullName(devUser),
+        };
+    });
+};
+
 const registrarHistorial = async ({
     transaction,
     ticket_id,
@@ -128,10 +165,11 @@ const crearTicket = async (req, res) => {
 const obtenerTickets = async (req, res) => {
     try {
         const tickets = await Tickets.findAll();
+        const ticketsConNombres = await attachTicketUserNames(tickets);
 
         res.json({
             mensaje: "Listado de tickets",
-            tickets,
+            tickets: ticketsConNombres,
         });
     } catch (error) {
         res.status(500).json({

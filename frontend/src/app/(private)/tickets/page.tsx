@@ -11,6 +11,14 @@ export default function TicketsPage() {
   const [loading, setLoading] = useState(true);
   const [mensaje, setMensaje] = useState("");
 
+  const formatUserDisplay = (name?: string | null, id?: number) => {
+    if (name && name.trim()) {
+      return name;
+    }
+
+    return id ? `#${id}` : "-";
+  };
+
   useEffect(() => {
     cargarTickets();
   }, []);
@@ -59,16 +67,16 @@ export default function TicketsPage() {
             <p className="text-sm text-slate-600">Cargando tickets...</p>
           </div>
         ) : (
-          <table className="w-full table-fixed text-sm">
+          <table className="w-full table-auto text-sm">
             <thead className="bg-slate-50 text-left">
               <tr>
                 <th className="w-12 px-4 py-3">ID</th>
                 <th className="w-[32%] px-4 py-3">Título</th>
                 <th className="w-24 px-4 py-3">Prioridad</th>
                 <th className="w-28 px-4 py-3">Estado</th>
-                <th className="w-14 px-4 py-3">QA</th>
-                <th className="w-14 px-4 py-3">DEV</th>
-                <th className="w-44 px-4 py-3">Creado</th>
+                <th className="w-40 px-4 py-3">QA</th>
+                <th className="w-40 px-4 py-3">DEV</th>
+                <th className="w-48 px-4 py-3">Creado</th>
                 <th className="w-32 px-4 py-3">Acciones</th>
               </tr>
             </thead>
@@ -78,11 +86,11 @@ export default function TicketsPage() {
                 <tr key={ticket.id} className="border-t border-slate-200">
                   <td className="px-4 py-3">{ticket.id}</td>
                   <td className="px-4 py-3 whitespace-normal wrap-break-word">{ticket.title}</td>
-                  <td className="px-4 py-3">{ticket.priority}</td>
-                  <td className="px-4 py-3">{ticket.status}</td>
-                  <td className="px-4 py-3">{ticket.qa_user_id}</td>
-                  <td className="px-4 py-3">{ticket.dev_user_id}</td>
-                  <td className="px-4 py-3 whitespace-normal wrap-break-word">
+                  <td className="px-4 py-3 whitespace-nowrap">{ticket.priority}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">{ticket.status}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">{formatUserDisplay(ticket.qa_user_name, ticket.qa_user_id)}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">{formatUserDisplay(ticket.dev_user_name, ticket.dev_user_id)}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">
                     {ticket.created_at
                       ? new Date(ticket.created_at).toLocaleString()
                       : "-"}

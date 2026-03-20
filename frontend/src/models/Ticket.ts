@@ -7,5 +7,7 @@ export interface Ticket {
   created_by_user_id: number;
   qa_user_id: number;
   dev_user_id: number;
+  qa_user_name?: string | null;
+  dev_user_name?: string | null;
   created_at?: string;
 }
