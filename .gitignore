@@ -45,3 +45,10 @@ next-env.d.ts
 # Vim swap files
 *.swp
 *.swo
+
+backend/src/uploads/*
+!backend/src/uploads/.gitkeep
+!backend/src/uploads/collections/
+!backend/src/uploads/collections/.gitkeep
+
+

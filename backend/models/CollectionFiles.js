@@ -48,4 +48,10 @@ const CollectionFiles = sequelize.define('collection_files', {
     timestamps: false,
 });
 
+const Files = require("./Files");
+
+CollectionFiles.belongsTo(Files, {
+  foreignKey: "file_id",
+});
+
 module.exports = CollectionFiles;
