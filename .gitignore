@@ -46,9 +46,11 @@ next-env.d.ts
 *.swp
 *.swo
 
+# Uploads 
 backend/src/uploads/*
 !backend/src/uploads/.gitkeep
-!backend/src/uploads/collections/
+
+backend/src/uploads/collections/*
 !backend/src/uploads/collections/.gitkeep
 
 

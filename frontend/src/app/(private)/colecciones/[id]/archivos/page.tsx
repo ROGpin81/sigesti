@@ -280,7 +280,9 @@ export default function ArchivosColeccionPage() {
                       </a>
 
                       <a
-                        href={downloadUrl}
+                        /*href={downloadUrl}*/
+                        href={publicUrl}
+                        download={file?.original_filename || true}
                         target="_blank"
                         rel="noreferrer"
                         className="rounded-lg bg-emerald-700 px-4 py-2 text-sm font-semibold text-white"
